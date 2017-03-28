@@ -29,21 +29,21 @@ p {color: #FFFFFF; font-family:Minion Web; font-size:150%}
 
 
 <script language = "javascript">
-		var pic = "green"
-		function startTimer() {
+	var pic = "green.jpg"
+	function startTimer() {
         	setInterval(displayNextImage, 3000);
         }
         function displayNextImage(){
-        	if(pic == "red"){
-            	pic = "redYellow"
-            } else if(pic == "redYellow"){
-            	pic = "green"
-            } else if(pic == "green"){
-            	pic = "yellow"
-            } else if(pic = "yellow"){
-            	pic = "red"
-            }
-            document.getElementById('lights').src= pic
+        	if(pic == "red.jpg"){
+            		pic = "redYellow.jpg"
+            	} else if(pic == "redYellow.jpg"){
+            		pic = "green.jpg"
+            	} else if(pic == "green.jpg"){
+            		pic = "yellow.jpg"
+            	} else if(pic = "yellow.jpg"){
+            		pic = "red.jpg"
+            	}
+         	document.getElementById('lights').src= pic
          }
 
 </script>
