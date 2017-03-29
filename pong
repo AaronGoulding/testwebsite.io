@@ -19,27 +19,62 @@ input.onButtonPressed(Button.B, () => {
 let ballX: number = 2
 let ballY: number = 2
 let velocityX: string = "left"
-let velocityY: string = "up"
+let velocityY: string = "down"
 led.plot(ballX, ballY)
 control.waitMicros(10)
 game.startStopwatch()
 basic.forever(() => {
-    if (game.currentTime() % 100 == 0) {
-        if (ballX != 0 || ballX != 4)
-            led.unplot(ballX, ballY)
-        if (velocityX == "right") {
-            ballX = ballX + 1;
+    if (ballY == 0 || ballY == 4) {
+        if (velocityY == "up") {
+            velocityY = "down"
         } else {
-            ballX = ballX - 1;
-        }
-        if (led.point(ballX, ballY)) {
-            if (velocityX == "right") {
-                velocityX = "left"
-            } else {
-                velocityX = "right"
-            }
-        } else {
-            led.plot(ballX, ballY);
+            velocityY = "up"
         }
     }
-});
+    if (game.currentTime() % 50 == 0) {
+        led.unplot(ballX, ballY)
+        //ball X movement
+        if (velocityX == "right") {
+            //if ball moving right
+            if (ballX == 3) {
+                if (positionAI == ballY) {
+                    velocityX == "left"
+                    ballX -= 1
+                }
+            } else {
+                ballX += 1;
+            }
+        } else {
+            //if ball moving left
+            if (ballX == 1) {
+                if (position == ballY) {
+                    velocityX == "right"
+                    ballX += 1
+                }
+            } else {
+                ballX -= 1;
+            }
+        }
+        //ball Y movement
+        if (velocityY == "up") {
+            ballY += 1
+        } else if (velocityY == "down") {
+            ballY -= 1
+        }
+        led.plot(ballX, ballY);
+    }
+})
+//AI movement
+let positionAI = 2
+led.plot(4, positionAI)
+basic.forever(() => {
+    if (game.currentTime() % 60 == 0 && ballY != positionAI) {
+        led.unplot(4, positionAI)
+        if (ballY > positionAI) {
+            positionAI += 1
+        } else {
+            positionAI -= 1
+        }
+        led.plot(4, positionAI)
+    }
+})
