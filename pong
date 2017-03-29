@@ -1,0 +1,45 @@
+//Player movement
+led.plot(0, 2)
+let position = 2
+input.onButtonPressed(Button.A, () => {
+    if (position != 4) {
+        led.unplot(0, position)
+        position = position + 1;
+        led.plot(0, position)
+    }
+})
+input.onButtonPressed(Button.B, () => {
+    if (position != 0) {
+        led.unplot(0, position)
+        position = position - 1;
+        led.plot(0, position);
+    }
+})
+//Coding for the ball
+let ballX: number = 2
+let ballY: number = 2
+let velocityX: string = "left"
+let velocityY: string = "up"
+led.plot(ballX, ballY)
+control.waitMicros(10)
+game.startStopwatch()
+basic.forever(() => {
+    if (game.currentTime() % 100 == 0) {
+        if (ballX != 0 || ballX != 4)
+            led.unplot(ballX, ballY)
+        if (velocityX == "right") {
+            ballX = ballX + 1;
+        } else {
+            ballX = ballX - 1;
+        }
+        if (led.point(ballX, ballY)) {
+            if (velocityX == "right") {
+                velocityX = "left"
+            } else {
+                velocityX = "right"
+            }
+        } else {
+            led.plot(ballX, ballY);
+        }
+    }
+});
