@@ -4,7 +4,7 @@ let ballY = 2
 let velocityY = 1
 let velocityX = 1
 let paddleY = 2
-let difficulty = 100
+let difficulty = 10
 let points = 0
 let ongoing = true
 game.startStopwatch()
@@ -29,8 +29,10 @@ basic.forever(() => {
         //Would it hit the bat?
         if (ballX + velocityX == 0 && paddleY == ballY) {
             velocityX *= -1
-            difficulty -= 10
             points += 1
+            if(difficulty != 5){
+            difficulty -= 1
+            }
         } else if (ballX + velocityX == 0 && paddleY != ballY) {
             basic.clearScreen()
             basic.showString("GAME OVER!!!")
