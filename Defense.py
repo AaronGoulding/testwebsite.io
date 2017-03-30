@@ -59,7 +59,7 @@ basic.forever(() => {
                 inRow = true
             }
         }
-        if (inRow = false) {
+        if (inRow == false) {
             projectileNumber += 1
             randomY = Math.random(4)
             projectile.push([4, randomY])
