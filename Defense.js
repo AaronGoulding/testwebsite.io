@@ -1,5 +1,5 @@
 //set up
-let projectile: number[][] = []
+let projectile: number[][] = [[0,0]]
 let projectileNumber = 0
 let paddleY = 2
 let difficulty = 100
@@ -29,7 +29,7 @@ input.onButtonPressed(Button.B, () => {
 //Move right every 30 milliseconds
 basic.forever(() => {
     if (game.currentTime() % 35 == 0) {
-        for (let i = 0; i < projectileNumber; i++) {
+        for (let i = 1; i < projectileNumber; i++) {
             if (projectile[i][0] != 0) {
                 led.unplot(projectile[i][0], projectile[i][1])
                 projectile[i][0] -= 1
